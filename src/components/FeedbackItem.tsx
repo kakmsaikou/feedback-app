@@ -1,4 +1,3 @@
-import { FeedbackData } from '../data/FeedbackData';
 import Card from './shared/Card';
 
 interface Props {

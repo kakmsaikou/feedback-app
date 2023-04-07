@@ -1,4 +1,3 @@
-import { FeedbackData } from '../data/FeedbackData';
 import FeedbackItem from './FeedbackItem';
 
 export interface Props {

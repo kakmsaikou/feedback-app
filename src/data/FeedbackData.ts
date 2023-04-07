@@ -1,9 +1,3 @@
-export interface FeedbackData {
-  id: number;
-  rating: number;
-  text: string;
-}
-
 const FeedbackDataList: FeedbackData[] = [
   {
     id: 1,
