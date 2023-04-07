@@ -1,12 +1,23 @@
 export interface Props {
-  text: string;
+  text?: string;
+  bgColor?: string;
+  textColor?: string;
 }
 
-const Header = ({ text }: Props) => {
+const Header = ({
+  text = 'Feedback UI',
+  bgColor = 'rgba(0,0,0,0.4)',
+  textColor = '#ff6a95',
+}: Props) => {
+  const headerStyles = {
+    backgroundColor: bgColor,
+    color: textColor,
+  };
+
   return (
-    <header className='h-16 w-full flex justify-center items-center mb-8  bg-black bg-opacity-40 text-pink-500'>
-      <div>
-        <h2 className='font-bold'>{text}</h2>
+    <header style={headerStyles}>
+      <div className='container'>
+        <h2 className='container'>{text}</h2>
       </div>
     </header>
   );
