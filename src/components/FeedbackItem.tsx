@@ -1,4 +1,5 @@
 import { FeedbackData } from '../data/FeedbackData';
+import Card from './shared/Card';
 
 interface Props {
   feedbackData: FeedbackData;
@@ -6,10 +7,10 @@ interface Props {
 
 const FeedbackItem = ({ feedbackData }: Props) => {
   return (
-    <div className='card'>
+    <Card reverse={true}>
       <div className='num-display'>{feedbackData.rating}</div>
       <div className='text-display'>{feedbackData.text}</div>
-    </div>
+    </Card>
   );
 };
 
