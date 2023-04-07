@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { FeedbackData } from '../data/FeedbackData';
 
-const FeedbackItem = () => {
-  const [rating, setRating] = useState(7);
-  const [text, setText] = useState('This is an example of a feedback item');
+interface Props {
+  feedbackData: FeedbackData;
+}
 
+const FeedbackItem = ({ feedbackData }: Props) => {
   return (
     <div className='card'>
-      <div className='num-display'>{rating}</div>
-      <div className='text-display'>{text}</div>
+      <div className='num-display'>{feedbackData.rating}</div>
+      <div className='text-display'>{feedbackData.text}</div>
     </div>
   );
 };
