@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-slate-800 text-white leading-relaxed;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .container {
+    @apply max-w-3xl m-auto px-5;
+  }
+
+  .card {
+    @apply bg-white text-gray-800 rounded-2xl py-10 px-12 my-5 relative;
+  }
+
+  .card h2 {
+    @apply text-xl font-semibold text-center;
+  }
+
+  .rating {
+    @apply flex items-center justify-around mt-7 mb-10;
+  }
+
+  .rating li,
+  .num-display {
+    @apply relative bg-gray-100 w-12 h-12 text-center text-xl border border-gray-200;
+  }
+}
