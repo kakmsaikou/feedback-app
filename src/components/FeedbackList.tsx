@@ -5,6 +5,9 @@ export interface Props {
 }
 
 const FeedbackList = ({ feedbackDataList }: Props) => {
+  if (!feedbackDataList || feedbackDataList.length === 0) {
+    return <p>No Feedback Yet</p>;
+  }
   return (
     <div>
       {feedbackDataList.map(item => (
