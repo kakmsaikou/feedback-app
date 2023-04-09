@@ -8,7 +8,7 @@ interface Props {
 
 const FeedbackItem = ({ feedbackData, handleDelete }: Props) => {
   return (
-    <Card reverse={true}>
+    <Card>
       <div className='num-display'>{feedbackData.rating}</div>
       <button className='close' onClick={() => handleDelete(feedbackData.id)}>
         <FaTimes color='purple' />
