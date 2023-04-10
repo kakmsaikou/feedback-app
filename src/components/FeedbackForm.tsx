@@ -38,9 +38,8 @@ const FeedbackForm = ({ addFeedback }: Props) => {
         id: uuidv4(),
       };
       addFeedback(newFeedback);
-      console.log(btnDisabled);
       setText('');
-      console.log(btnDisabled);
+      setBtnDisabled(true);
     }
   };
   return (
