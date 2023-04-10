@@ -3,7 +3,7 @@ import { FaTimes } from 'react-icons/fa';
 
 interface Props {
   feedbackData: FeedbackData;
-  handleDelete: (id: number) => void;
+  handleDelete: (id: string) => void;
 }
 
 const FeedbackItem = ({ feedbackData, handleDelete }: Props) => {

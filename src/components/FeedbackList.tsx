@@ -2,7 +2,7 @@ import FeedbackItem from './FeedbackItem';
 
 export interface Props {
   feedbackDataList: FeedbackData[];
-  handleDelete: (id: number) => void;
+  handleDelete: (id: string) => void;
 }
 
 const FeedbackList = ({ feedbackDataList, handleDelete }: Props) => {

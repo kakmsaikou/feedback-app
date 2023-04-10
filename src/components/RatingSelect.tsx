@@ -1,15 +1,13 @@
 import { ChangeEvent, useState } from 'react';
 
 export interface Props {
-  select: (rating: number) => void;
+  rating: number;
+  setRating: (rating: number) => void;
 }
 
-const RatingSelect = ({ select }: Props) => {
-  const [selected, setSelected] = useState(10);
-
+const RatingSelect = ({ rating, setRating }: Props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSelected(Number(e.currentTarget.value));
-    select(selected);
+    setRating(Number(e.currentTarget.value));
   };
   return (
     <ul className='rating'>
@@ -21,7 +19,7 @@ const RatingSelect = ({ select }: Props) => {
             name='rating'
             value={item}
             onChange={handleChange}
-            checked={selected === item}
+            checked={rating === item}
           />
           <label htmlFor={`num${item}`}>{item}</label>
         </li>

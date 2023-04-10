@@ -8,14 +8,18 @@ import FeedbackForm from './components/FeedbackForm';
 const App = () => {
   const [feedbackDataList, setFeedbackDataList] = useState(FeedbackDataList);
 
-  const deleteFeedback = (id: number) => {
+  const addFeedback = (newFeedback: FeedbackData) => {
+    setFeedbackDataList([newFeedback, ...feedbackDataList]);
+  };
+
+  const deleteFeedback = (id: string) => {
     setFeedbackDataList(feedbackDataList.filter(item => item.id !== id));
   };
   return (
     <>
       <Header />
       <div className='container'>
-        <FeedbackForm />
+        <FeedbackForm addFeedback={addFeedback} />
         <FeedbackStatus feedbackDataList={feedbackDataList} />
         <FeedbackList
           feedbackDataList={feedbackDataList}
