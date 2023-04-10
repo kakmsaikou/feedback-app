@@ -1,4 +1,5 @@
 import FeedbackItem from './FeedbackItem';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export interface Props {
   feedbackDataList: FeedbackData[];
@@ -10,14 +11,19 @@ const FeedbackList = ({ feedbackDataList, handleDelete }: Props) => {
     return <p>No Feedback Yet</p>;
   }
   return (
-    <div>
-      {feedbackDataList.map(item => (
-        <FeedbackItem
-          key={item.id}
-          feedbackData={item}
-          handleDelete={handleDelete}
-        />
-      ))}
+    <div className='feedback-list'>
+      <AnimatePresence>
+        {feedbackDataList.map(item => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <FeedbackItem feedbackData={item} handleDelete={handleDelete} />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   );
 };
