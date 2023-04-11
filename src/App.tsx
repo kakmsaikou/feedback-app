@@ -6,6 +6,7 @@ import FeedbackList from './components/FeedbackList';
 import FeedbackStatus from './components/FeedbackStatus';
 import FeedbackForm from './components/FeedbackForm';
 import AboutPage from './pages/AboutPage';
+import AboutIconLInk from './components/AboutIconLink';
 
 const App = () => {
   const [feedbackDataList, setFeedbackDataList] = useState(FeedbackDataList);
@@ -33,6 +34,7 @@ const App = () => {
                     feedbackDataList={feedbackDataList}
                     handleDelete={deleteFeedback}
                   />
+                  <AboutIconLInk />
                 </>
               }
             />
