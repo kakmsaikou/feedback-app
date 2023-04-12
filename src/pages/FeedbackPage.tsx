@@ -4,6 +4,7 @@ import FeedbackForm from '../components/FeedbackForm';
 import FeedbackList from '../components/FeedbackList';
 import FeedbackStatus from '../components/FeedbackStatus';
 import FeedbackDataList from '../data/FeedbackData';
+import { FeedbackProvider } from '../context/FeedbackContext';
 
 const FeedbackPage = () => {
   const [feedbackDataList, setFeedbackDataList] = useState(FeedbackDataList);
@@ -16,7 +17,7 @@ const FeedbackPage = () => {
     setFeedbackDataList(feedbackDataList.filter(item => item.id !== id));
   };
   return (
-    <>
+    <FeedbackProvider>
       <FeedbackForm addFeedback={addFeedback} />
       <FeedbackStatus feedbackDataList={feedbackDataList} />
       <FeedbackList
@@ -24,7 +25,7 @@ const FeedbackPage = () => {
         handleDelete={deleteFeedback}
       />
       <AboutIconLInk />
-    </>
+    </FeedbackProvider>
   );
 };
 
