@@ -1,18 +1,16 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import Card from './shared/Card';
 import Button from './shared/Button';
 import RatingSelect from './RatingSelect';
 import { v4 as uuidv4 } from 'uuid';
+import { FeedbackContext } from '../context/FeedbackContext';
 
-export interface Props {
-  addFeedback: (newFeedback: FeedbackData) => void;
-}
-
-const FeedbackForm = ({ addFeedback }: Props) => {
+const FeedbackForm = () => {
   const [text, setText] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [rating, setRating] = useState(10);
   const [message, setMessage] = useState('');
+  const { addFeedback } = useContext(FeedbackContext);
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === '') {
@@ -25,7 +23,6 @@ const FeedbackForm = ({ addFeedback }: Props) => {
       setMessage('');
       setBtnDisabled(false);
     }
-
     setText(e.target.value);
   };
 
