@@ -19,11 +19,8 @@ const FeedbackPage = () => {
   return (
     <FeedbackProvider>
       <FeedbackForm addFeedback={addFeedback} />
-      <FeedbackStatus feedbackDataList={feedbackDataList} />
-      <FeedbackList
-        feedbackDataList={feedbackDataList}
-        handleDelete={deleteFeedback}
-      />
+      <FeedbackStatus />
+      <FeedbackList handleDelete={deleteFeedback} />
       <AboutIconLInk />
     </FeedbackProvider>
   );

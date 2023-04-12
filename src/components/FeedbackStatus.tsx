@@ -1,8 +1,9 @@
-export interface Props {
-  feedbackDataList: FeedbackData[];
-}
+import { useContext } from 'react';
+import FeedbackContext from '../context/FeedbackContext';
 
-const FeedbackStatus = ({ feedbackDataList }: Props) => {
+const FeedbackStatus = () => {
+  const { feedbackDataList } = useContext(FeedbackContext);
+
   const average = Number(
     (
       feedbackDataList.reduce(
