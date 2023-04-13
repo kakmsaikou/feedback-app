@@ -25,11 +25,13 @@ export interface Props {
 }
 
 export const FeedbackProvider = ({ children }: Props) => {
-  const [feedbackDataList, setFeedbackDataList] = useState(FeedbackDataList);
-  const [feedbackEdit, setFeedbackEdit] = useState({
+  const [feedbackDataList, setFeedbackDataList] = useState(
+    () => FeedbackDataList
+  );
+  const [feedbackEdit, setFeedbackEdit] = useState(() => ({
     item: {} as FeedbackData,
     edit: false,
-  });
+  }));
 
   const addFeedback = (newFeedback: FeedbackData) => {
     setFeedbackDataList([newFeedback, ...feedbackDataList]);
