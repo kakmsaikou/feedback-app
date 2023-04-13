@@ -4,10 +4,10 @@ import Card from './shared/Card';
 import { FaTimes } from 'react-icons/fa';
 
 interface Props {
-  feedbackData: FeedbackData;
+  item: FeedbackData;
 }
 
-const FeedbackItem = ({ feedbackData }: Props) => {
+const FeedbackItem = ({ item: feedbackData }: Props) => {
   const { deleteFeedback } = useContext(FeedbackContext);
   return (
     <Card>
