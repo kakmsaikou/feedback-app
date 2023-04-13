@@ -5,12 +5,14 @@ interface FeedbackContextType {
   feedbackDataList: FeedbackData[];
   addFeedback: (newFeedback: FeedbackData) => void;
   deleteFeedback: (id: string) => void;
+  editFeedback: (item: FeedbackData) => void;
 }
 
 export const FeedbackContext = createContext<FeedbackContextType>({
   feedbackDataList: [],
   addFeedback: () => {},
   deleteFeedback: () => {},
+  editFeedback: () => {},
 });
 
 export interface Props {
@@ -19,6 +21,10 @@ export interface Props {
 
 export const FeedbackProvider = ({ children }: Props) => {
   const [feedbackDataList, setFeedbackDataList] = useState(FeedbackDataList);
+  const [feedbackEdit, setFeedbackEdit] = useState({
+    item: {} as FeedbackData,
+    edit: false,
+  });
 
   const addFeedback = (newFeedback: FeedbackData) => {
     setFeedbackDataList([newFeedback, ...feedbackDataList]);
@@ -27,9 +33,16 @@ export const FeedbackProvider = ({ children }: Props) => {
   const deleteFeedback = (id: string) => {
     setFeedbackDataList(feedbackDataList.filter(item => item.id !== id));
   };
+
+  const editFeedback = (item: FeedbackData) => {
+    setFeedbackEdit({
+      item,
+      edit: true,
+    });
+  };
   return (
     <FeedbackContext.Provider
-      value={{ feedbackDataList, addFeedback, deleteFeedback }}
+      value={{ feedbackDataList, addFeedback, deleteFeedback, editFeedback }}
     >
       {children}
     </FeedbackContext.Provider>
