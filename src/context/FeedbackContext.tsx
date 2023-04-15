@@ -40,7 +40,8 @@ export const FeedbackProvider = ({ children }: Props) => {
   };
 
   const deleteFeedback = (id: string) => {
-    setFeedbackDataList(feedbackDataList.filter(item => item.id !== id));
+    if (window.confirm('Are you sure you want to delete?'))
+      setFeedbackDataList(feedbackDataList.filter(item => item.id !== id));
   };
 
   const editFeedback = (item: FeedbackData) => {
