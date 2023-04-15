@@ -3,21 +3,23 @@ import FeedbackDataList from '../data/FeedbackData';
 
 interface FeedbackContextType {
   feedbackDataList: FeedbackData[];
-  addFeedback: (newFeedback: FeedbackData) => void;
-  deleteFeedback: (id: string) => void;
   feedbackEdit: {
     item: FeedbackData;
     edit: boolean;
   };
+  addFeedback: (newFeedback: FeedbackData) => void;
+  deleteFeedback: (id: string) => void;
   editFeedback: (item: FeedbackData) => void;
+  updateFeedback: (item: FeedbackData) => void;
 }
 
 export const FeedbackContext = createContext<FeedbackContextType>({
   feedbackDataList: [],
+  feedbackEdit: { item: {} as FeedbackData, edit: false },
   addFeedback: () => {},
   deleteFeedback: () => {},
-  feedbackEdit: { item: {} as FeedbackData, edit: false },
   editFeedback: () => {},
+  updateFeedback: () => {},
 });
 
 export interface Props {
@@ -47,14 +49,24 @@ export const FeedbackProvider = ({ children }: Props) => {
       edit: true,
     });
   };
+
+  const updateFeedback = (updatedItem: FeedbackData) => {
+    setFeedbackDataList(
+      feedbackDataList.map(item => {
+        return item.id === updatedItem.id ? { ...item, ...updatedItem } : item;
+      })
+    );
+    setFeedbackEdit({ ...feedbackEdit, edit: false });
+  };
   return (
     <FeedbackContext.Provider
       value={{
         feedbackDataList,
+        feedbackEdit,
         addFeedback,
         deleteFeedback,
-        feedbackEdit,
         editFeedback,
+        updateFeedback,
       }}
     >
       {children}
