@@ -10,7 +10,7 @@ const AboutPage = () => {
         <p>Version: 1.0.0</p>
       </div>
       <p>
-        <Link to='/'>Back To Home</Link>
+        <Link to='/feedback-app'>Back To Home</Link>
       </p>
     </Card>
   );
