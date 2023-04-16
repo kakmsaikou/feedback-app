@@ -43,9 +43,7 @@ export const FeedbackProvider = ({ children }: Props) => {
   }, []);
 
   const fetchFeedback = async () => {
-    const response = await fetch(
-      `http://localhost:5000/feedback?_sort=id&_order=desc`
-    );
+    const response = await fetch(`/api?_sort=id&_order=desc`);
     const data = await response.json();
     setFeedbackDataList(data);
     setIsLoading(false);

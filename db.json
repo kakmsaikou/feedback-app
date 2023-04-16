@@ -1,5 +1,5 @@
 {
-  "feedback": [
+  "api": [
     {
       "id": 1,
       "rating": 10,
@@ -19,6 +19,16 @@
       "rating": "4",
       "text": "New feedback item.",
       "id": 5
+    },
+    {
+      "rating": "4",
+      "text": "New feedback item.",
+      "id": 6
+    },
+    {
+      "rating": "4",
+      "text": "New feedback item.",
+      "id": 7
     }
   ]
 }
