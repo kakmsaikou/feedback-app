@@ -2,7 +2,6 @@ import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 import Card from './shared/Card';
 import Button from './shared/Button';
 import RatingSelect from './RatingSelect';
-import { v4 as uuidv4 } from 'uuid';
 import { FeedbackContext } from '../context/FeedbackContext';
 
 const FeedbackForm = () => {
@@ -42,11 +41,9 @@ const FeedbackForm = () => {
       const newFeedback = {
         text,
         rating,
-        id: uuidv4(),
       };
       if (feedbackEdit.edit) {
-        newFeedback.id = feedbackEdit.item.id;
-        updateFeedback(newFeedback);
+        updateFeedback(feedbackEdit.item.id, newFeedback);
       } else {
         addFeedback(newFeedback);
       }

@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from 'react';
-import FeedbackDataList from '../data/FeedbackData';
 
 interface FeedbackContextType {
   feedbackDataList: FeedbackData[];
@@ -8,10 +7,10 @@ interface FeedbackContextType {
     edit: boolean;
   };
   isLoading: boolean;
-  addFeedback: (newFeedback: FeedbackData) => void;
-  deleteFeedback: (id: string) => void;
+  addFeedback: (newFeedback: Partial<FeedbackData>) => void;
+  deleteFeedback: (id: number) => void;
   editFeedback: (item: FeedbackData) => void;
-  updateFeedback: (item: FeedbackData) => void;
+  updateFeedback: (id: number, item: Partial<FeedbackData>) => void;
 }
 
 export const FeedbackContext = createContext<FeedbackContextType>({
@@ -49,11 +48,21 @@ export const FeedbackProvider = ({ children }: Props) => {
     setIsLoading(false);
   };
 
-  const addFeedback = (newFeedback: FeedbackData) => {
-    setFeedbackDataList([newFeedback, ...feedbackDataList]);
+  const addFeedback = async (newFeedback: Partial<FeedbackData>) => {
+    const response = await fetch(`/api`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newFeedback),
+    });
+
+    const data = await response.json();
+
+    setFeedbackDataList([data, ...feedbackDataList]);
   };
 
-  const deleteFeedback = (id: string) => {
+  const deleteFeedback = (id: number) => {
     if (window.confirm('Are you sure you want to delete?'))
       setFeedbackDataList(feedbackDataList.filter(item => item.id !== id));
   };
@@ -65,10 +74,10 @@ export const FeedbackProvider = ({ children }: Props) => {
     });
   };
 
-  const updateFeedback = (updatedItem: FeedbackData) => {
+  const updateFeedback = (id: number, updatedItem: Partial<FeedbackData>) => {
     setFeedbackDataList(
       feedbackDataList.map(item => {
-        return item.id === updatedItem.id ? { ...item, ...updatedItem } : item;
+        return item.id === id ? { ...item, ...updatedItem } : item;
       })
     );
     setFeedbackEdit({ ...feedbackEdit, edit: false });

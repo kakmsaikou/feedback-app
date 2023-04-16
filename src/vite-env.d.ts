@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 interface FeedbackData {
-  id: string;
+  id: number;
   rating: number;
   text: string;
 }
