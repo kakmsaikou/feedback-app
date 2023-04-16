@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import FeedbackDataList from '../data/FeedbackData';
 
 interface FeedbackContextType {
@@ -7,6 +7,7 @@ interface FeedbackContextType {
     item: FeedbackData;
     edit: boolean;
   };
+  isLoading: boolean;
   addFeedback: (newFeedback: FeedbackData) => void;
   deleteFeedback: (id: string) => void;
   editFeedback: (item: FeedbackData) => void;
@@ -16,6 +17,7 @@ interface FeedbackContextType {
 export const FeedbackContext = createContext<FeedbackContextType>({
   feedbackDataList: [],
   feedbackEdit: { item: {} as FeedbackData, edit: false },
+  isLoading: true,
   addFeedback: () => {},
   deleteFeedback: () => {},
   editFeedback: () => {},
@@ -28,12 +30,26 @@ export interface Props {
 
 export const FeedbackProvider = ({ children }: Props) => {
   const [feedbackDataList, setFeedbackDataList] = useState(
-    () => FeedbackDataList
+    () => [] as FeedbackData[]
   );
   const [feedbackEdit, setFeedbackEdit] = useState(() => ({
     item: {} as FeedbackData,
     edit: false,
   }));
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
+
+  const fetchFeedback = async () => {
+    const response = await fetch(
+      `http://localhost:5000/feedback?_sort=id&_order=desc`
+    );
+    const data = await response.json();
+    setFeedbackDataList(data);
+    setIsLoading(false);
+  };
 
   const addFeedback = (newFeedback: FeedbackData) => {
     setFeedbackDataList([newFeedback, ...feedbackDataList]);
@@ -64,6 +80,7 @@ export const FeedbackProvider = ({ children }: Props) => {
       value={{
         feedbackDataList,
         feedbackEdit,
+        isLoading,
         addFeedback,
         deleteFeedback,
         editFeedback,
