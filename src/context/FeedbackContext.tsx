@@ -79,10 +79,23 @@ export const FeedbackProvider = ({ children }: Props) => {
     });
   };
 
-  const updateFeedback = (id: number, updatedItem: Partial<FeedbackData>) => {
+  const updateFeedback = async (
+    id: number,
+    updatedItem: Partial<FeedbackData>
+  ) => {
+    const response = await fetch(`/api/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedItem),
+    });
+
+    const data = (await response.json());
+
     setFeedbackDataList(
       feedbackDataList.map(item => {
-        return item.id === id ? { ...item, ...updatedItem } : item;
+        return item.id === id ? { ...item, ...data } : item;
       })
     );
     setFeedbackEdit({ ...feedbackEdit, edit: false });
