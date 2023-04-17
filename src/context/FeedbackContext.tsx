@@ -62,9 +62,14 @@ export const FeedbackProvider = ({ children }: Props) => {
     setFeedbackDataList([data, ...feedbackDataList]);
   };
 
-  const deleteFeedback = (id: number) => {
-    if (window.confirm('Are you sure you want to delete?'))
+  const deleteFeedback = async (id: number) => {
+    if (window.confirm('Are you sure you want to delete?')) {
+      await fetch(`/api/${id}`, {
+        method: 'DELETE',
+      });
+
       setFeedbackDataList(feedbackDataList.filter(item => item.id !== id));
+    }
   };
 
   const editFeedback = (item: FeedbackData) => {
