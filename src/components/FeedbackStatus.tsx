@@ -7,7 +7,8 @@ const FeedbackStatus = () => {
   const average = Number(
     (
       feedbackDataList.reduce(
-        (accumulator, currentValue) => (accumulator += currentValue.rating),
+        (accumulator, currentValue) =>
+          (accumulator += Number(currentValue.rating)),
         0
       ) / feedbackDataList.length
     )

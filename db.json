@@ -16,34 +16,9 @@
       "text": "This is feedback item 3 coming from the backend"
     },
     {
-      "rating": "4",
-      "text": "New feedback item.",
-      "id": 5
-    },
-    {
-      "rating": "4",
-      "text": "New feedback item.",
-      "id": 6
-    },
-    {
-      "rating": "4",
-      "text": "New feedback item.",
-      "id": 7
-    },
-    {
-      "text": "    const response = await fetch('/feedback', {       method: 'POST',       headers: {         'Content-Type': 'application/json',       },       body: JSON.stringify(newFeedback),     })",
-      "rating": 10,
-      "id": 14
-    },
-    {
-      "text": "hello world!!!hello world!!!",
-      "rating": 4,
-      "id": 16
-    },
-    {
-      "text": "This is an updated comment.",
-      "rating": 10,
-      "id": 17
+      "text": "Hello World",
+      "rating": 1,
+      "id": 4
     }
   ]
 }
